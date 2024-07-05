@@ -4,6 +4,7 @@
   justify-content: space-between;
   height: 100px;
   align-items: center;
+  position: relative;
 
   a {
     transition: all 0.4 ease;
@@ -69,10 +70,12 @@
 
     .menuIcon {
       display: none;
+      z-index: 999;
 
       img {
         width: 36px;
         height: 36px;
+        cursor: pointer;
       }
 
       @include sm {
@@ -81,12 +84,28 @@
     }
     .menu {
       position: absolute;
+      top: 0;
+      right: -100%;
       background-color: black;
       color: white;
-      top: 0;
-      right: -50%;
       height: 100vh;
       width: 50%;
+      transition: all 1s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+
+      &.active {
+        right: -10%;
+      }
+
+      @include sm {
+        a {
+          display: initial;
+        }
+      }
     }
   }
 }

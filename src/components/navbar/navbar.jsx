@@ -3,6 +3,7 @@ import "./navbar.scss";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+
   return (
     <div className="nav">
       <div className="left">
@@ -18,10 +19,15 @@ const Navbar = () => {
       <div className="right">
         <a href="/">Sign in</a>
         <a className="register">Sign up</a>
-        <div className="menuIcon">
+        <div
+          className="menuIcon"
+          onClick={() => {
+            setOpen(!open);
+          }}
+        >
           <img src="/menu.png" />
         </div>
-        <div className="menu">
+        <div className={open ? "menu active" : "menu"}>
           <a href="/">Home</a>
           <a href="/">About</a>
           <a href="/">Contact</a>
