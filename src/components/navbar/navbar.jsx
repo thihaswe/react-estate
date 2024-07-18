@@ -1,15 +1,17 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "./navbar.scss";
+import { Link } from "react-router-dom";
 
-const Navbar = () => {
+function Navbar() {
   const [open, setOpen] = useState(false);
 
+  const user = true;
   return (
-    <div className="nav">
+    <nav>
       <div className="left">
         <a href="/" className="logo">
-          <img src="./logo.png" />
-          <span>react estate</span>
+          <img src="/logo.png" alt="" />
+          <span>LamaEstate</span>
         </a>
         <a href="/">Home</a>
         <a href="/">About</a>
@@ -17,15 +19,32 @@ const Navbar = () => {
         <a href="/">Agents</a>
       </div>
       <div className="right">
-        <a href="/">Sign in</a>
-        <a className="register">Sign up</a>
-        <div
-          className="menuIcon"
-          onClick={() => {
-            setOpen(!open);
-          }}
-        >
-          <img src="/menu.png" />
+        {user ? (
+          <div className="user">
+            <img
+              src="https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+              alt=""
+            />
+            <span>John Doe</span>
+            <Link to="/profile" className="profile">
+              <div className="notification">3</div>
+              <span>Profile</span>
+            </Link>
+          </div>
+        ) : (
+          <>
+            <a href="/">Sign in</a>
+            <a href="/" className="register">
+              Sign up
+            </a>
+          </>
+        )}
+        <div className="menuIcon">
+          <img
+            src="/menu.png"
+            alt=""
+            onClick={() => setOpen((prev) => !prev)}
+          />
         </div>
         <div className={open ? "menu active" : "menu"}>
           <a href="/">Home</a>
@@ -36,8 +55,8 @@ const Navbar = () => {
           <a href="/">Sign up</a>
         </div>
       </div>
-    </div>
+    </nav>
   );
-};
+}
 
 export default Navbar;
